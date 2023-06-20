@@ -5,8 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
-class DummyMiddleware
+class AuthenticateUser
 {
     /**
      * Handle an incoming request.
@@ -14,10 +15,11 @@ class DummyMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-
     {
-        $var = "heello";
-        dd($var);
-        return $next($request);
+        if (Auth::check()) {
+            return $next($request);
+        }
+
+        return redirect()->route('login');
     }
 }
