@@ -20,7 +20,6 @@ Route::get('/', function () {
 
 
 Route::middleware('dummy')->group(function () {
-
     Route::get("/protected-route", [MiddlewareController::class, 'firstRoute'])->name('first.route');
     Route::get("/protected-route2", [MiddlewareController::class, 'secondRoute'])->name('second.route');
     Route::get("/protected-route3", [MiddlewareController::class, 'thirdRoute'])->name('third.route');
