@@ -9,6 +9,8 @@ use App\Models\User;
 
 class MiddlewareController extends Controller
 {
+
+    ///// just dummy functions on these i applied group middleware
     public function firstRoute(){
         return 'This route is protected by the dummy middleware.';
     }
@@ -25,18 +27,23 @@ class MiddlewareController extends Controller
     public function login(){
         return view('login');
     }
-
+    // just returninng views
     public function logout(){
         return view('logout');
     }
 
+
+
+    // purchase view 
     public function purchase(){
         return view('purchase');
     }
 
+
+
+    //// login user API
     public function loginUser(Request $request)
     {
-        
         $credentials = [
             'email' => $request->input('email')
         ];
@@ -49,9 +56,11 @@ class MiddlewareController extends Controller
         } else {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
-        
     }
 
+
+
+    /// logout user API
     public function logoutUser()
     {
         Auth::logout();
